@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Javascript Quiz</title>
+    <link rel="stylesheet" href="develop/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+        <nav>
+            <flexbox class="menu">
+                <a href="#highScores">High Scores</a>
+            </flexbox>
+            <flexbox class="menu">
+                <a href="#home">Home</a>
+            </flexbox>
+        </nav>
+        <header>
+        <h1>Javascript Quiz</h1>
+      </header>
+      <div class="card">
+        <div id = "textArea" class="card-header">
+          <h2>Question details will be given here for reader to see.</h2>
+        </div>
+        <div id="initialsForm" style="display: none;">
+            <form>
+              <label for="initials">Enter Initials:</label>
+              <input type="text" id="initials" name="initials">
+              <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="answers">
+            <ul>
+                <li>
+                    <button id="option1" class="answerbtn">Answer A</button>
+                </li>
+                <li>
+                    <button id="option2" class="answerbtn">Answer B</button>
+                </li>
+                <li>
+                    <button id="option3" class="answerbtn">Answer C</button>
+                </li>
+                <li>
+                    <button id="option4" class="answerbtn">Answer D</button>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer">
+          <button id="startButton" class="btn">Start Quiz</button>
+        </div>
+        <div class="progress-info">
+            <p>result message</p>
+            <p>timer</p>
+        </div>
+      </div>
+    </div>
+    <script src="develop/script.js"></script>
+  </body>
+</html>
