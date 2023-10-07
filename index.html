@@ -22,7 +22,6 @@
       </header>
       <div class="card">
         <div id = "textArea" class="card-header">
-          <h2>Question details will be given here for reader to see.</h2>
         </div>
         <div id="initialsForm" style="display: none;">
             <form>
@@ -31,28 +30,17 @@
               <button type="submit">Submit</button>
             </form>
         </div>
-        <div class="answers">
-            <ul>
-                <li>
-                    <button id="option1" class="answerbtn">Answer A</button>
-                </li>
-                <li>
-                    <button id="option2" class="answerbtn">Answer B</button>
-                </li>
-                <li>
-                    <button id="option3" class="answerbtn">Answer C</button>
-                </li>
-                <li>
-                    <button id="option4" class="answerbtn">Answer D</button>
-                </li>
-            </ul>
+        <div>
+          <h1 id="question">Click below to start the quiz.</h1><br>
+          <div id="answer-buttons">
+          </div>
+          <button id="submitButton" class="btn">Start Quiz</button>
         </div>
         <div class="card-footer">
-          <button id="startButton" class="btn">Start Quiz</button>
         </div>
         <div class="progress-info">
-            <p>result message</p>
-            <p>timer</p>
+            <p id="result">Good Luck!</p>
+            <p id="timer">Timer</p>
         </div>
       </div>
     </div>

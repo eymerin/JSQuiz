@@ -9,78 +9,213 @@
 var quizDescription = "";
 var scores = [];
 var highScores = [];
-var allQuestions = ["question1", 'question2', 'question3', 'question4', 'question5'];
-
-
+var correct = "That's Right!"
+var incorrect = "Sorry, that's incorrect..."
 
 //creates buttons
-const startButton = document.getElementById('startButton');
-const answer1 = document.getElementById('option1');
-const answer2 = document.getElementById('option2');
-const answer3 = document.getElementById('option3');
-const answer4 = document.getElementById('option4');
+const answer1 = document.getElementById('1');
+const answer2 = document.getElementById('2');
+const answer3 = document.getElementById('3');
+const answer4 = document.getElementById('4');
+
+const questionEl = document.getElementById("question");
+const answerBtn = document.getElementById("answer-buttons");
+const submitBtn = document.getElementById("submitButton");
+const points = document.getElementById("result");
 
 
 //set starting conditions
+let questionIndex = 0;
+let score = 0;
+
 window.addEventListener('load', function() {
 
-    //hides answer buttons
-    for (let i = 0; i < answerButtons.length; i++) {
-        answerButtons[i].classList.add('hide');
-    }
-
 });
-
-
-
-
-// Sample array of objects
-const answerButtons = [
-    answer1, answer2, answer3, answer4
-  ];
   
-  // Class to add
-  const className = "hide";
+// Class to add
+const className = "hide";
   
 //sets quiz at first question
+var questions = [
+    {
+      question:"What is the capital of Alaska?",
+      answers:[
+        {answer:"Juneau", correct: true},
+        {answer:"Anchorage", correct: false},
+        {answer:"fish", correct: false},
+        {answer:"bears", correct: false},
+      ],
+      correct: 1002,
+      selected: null,
+      reason: "It's Juneau, which still has a population of less than 33,000. Yikes."
+    },
+    {
+      question:"Who founded the US Treasury?",
+      answers:[
+        {answer:"Lincoln", correct: false},
+        {answer:"Washington", correct: false},
+        {answer:"jefferson", correct: false},
+        {answer:"Kenny", correct: true},
+      ],
+      correct: 1004,
+      selected: null,
+      reason: "Alexander Hamilton was a major contrinutor to the strucure of the formative years of the US government. Arguably his largest contribution, apart from being a major contributor to maturing the constitution itself, was managing and growing the fledgling US credit system."
+    },
+    {
+      question:"Who is the first American born president?",
+      answers:[
+        {answer:"Anchorage", correct: false},
+        {answer:"Anchorage", correct: false},
+        {answer:"Anchorage", correct: true},
+        {answer:"Anchorage", correct: false},
+      ],
+      correct: 1010,
+      selected: null,
+      reason: "Martin Van Buren was born in December 5th, 1782 in Kinderhook, NY. The first president not born under British rule and the first president not of British ancestry. He was of Dutch lineage."
+    },     
+    {
+      question:"Which was not a part of the original 13 colonies?",
+      answers:[
+        {answer:"Anchorage", correct: false},
+        {answer:"Anchorage", correct: true},
+        {answer:"Anchorage", correct: false},
+        {answer:"Anchorage", correct: false},
+      ],
+      correct: 1011,
+      selected: null,
+      reason: "Vermont was the 14th state which joined on March 4th, 1791."
+    },  
+    {
+      question: "How many time zones does the USA have?",
+      answers:[
+        {answer:"Anchorage", correct: true},
+        {answer:"Anchorage", correct: false},
+        {answer:"Anchorage", correct: false},
+        {answer:"Anchorage", correct: false},
+      ],
+      correct: 1017,
+      selected: null,
+      reason: "Eastern, Central, Mountain, Pacific, Alaskan, and Hawaii-Aleutian" 
+    },    
+];
 
-
-console.log(textArea);
-
-
-  
-  
-
-
-function startQuiz() {
-
+//Start timer
+function startTimer(){
+    var counter = 45;
+    setInterval(function() {
+      counter--;
+      if (counter >= 0) {
+        span = document.getElementById("timer");
+        span.innerHTML = counter;
+      }
+      if (counter === 0) {
+        span.innerHTML = "Time's Up!";
+        clearInterval(counter);
+      }
+    }, 1000);
 }
 
+function checkAnswer() {
+    var answer = document.getElementsByName("answers");    
+    var answer;
+    for (var i = 0; i < gender.length; i++) {
+        if (gender[i].checked === true) {
+            answer = gender[i].value;
+            break
+        }}    
+        if (answer == "Male") {        
+            alert("true")
+        } 
+        else {
+            alert("false");
+    };
+}
 
+function startQuiz() {
+    questionIndex = 0;
+    score = 0;
+    submitButton.innerHTML = "Submit";
+    startTimer();
+    showQuestion();
+}
 
+function showQuestion() {
+    resetState();
+    let currentQuestion = questions[questionIndex];
+    let questNum = questionIndex + 1;
+    questionEl.innerHTML = questNum + ". " + currentQuestion.question;
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerHTML = answer.answer;
+        button.classList.add("answerbtn");
+        answerBtn.appendChild(button);
+        if(answer.correct) {
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", selectAnswer);
+    });
+}
+
+function showResult() {
+    span = document.getElementById("result");
+    if (answerChoice === true) {
+        span.innerHTML = correct;
+    } else {
+        span.innerHTML = incorrect;
+    }
+}
+
+function resetState() {
+    while(answerBtn.firstChild) {
+        answerBtn.removeChild(answerBtn.firstChild);
+    }
+}
+
+function selectAnswer(e) {
+    const selectedBtn = e.target;
+    const isCorrect = selectedBtn.dataset.correct === "true";
+    if (isCorrect) {
+        selectedBtn.classList.add("correct");
+        score++
+    } else{
+        selectedBtn.classList.add("incorrect");
+    }
+    Array.from(answerBtn.children).forEach(button => {
+        if (button.dataset.correct === "true") {
+            button.classList.add("correct");
+        };
+        button.disabled = true;
+    });
+    submitBtn.style.display = "block";
+}
+
+function handleSubmit() {
+    questionIndex ++;
+    if(questionIndex < questions.length) {
+        showQuestion();
+    } else {
+        showScore();
+    }
+}
+
+function showScore() {
+    resetState();
+    points.innerHTML = `Score: ${score}`
+}
 
 //starts quiz
-startButton.addEventListener('click', () => {
-    startButton.classList.add('hide');
-    // Code to start the quiz
-
-    // Unhide answer buttons
-    for (let i = 0; i < answerButtons.length; i++) {
-        answerButtons[i].classList.remove('hide');
-      }
-
-    var currentQuestion = 0
-
-    for (let i = 0; i < allQuestions.length; i++) {
-        textArea = allQuestions[i];
-        console.log(textArea);
-
+submitButton.addEventListener('click', () => {
+    if (submitButton.innerHTML === "Start Quiz") {
+        startQuiz();
+    } else {
+        if (questionIndex < questions.length) {
+            handleSubmit();
+        }
     }
-
-
-    //Start timer
-
-
+    
+    submitButton.classList.add('hide');
+    // Code to start the quiz
 });
 
 

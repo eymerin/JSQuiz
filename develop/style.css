@@ -52,7 +52,7 @@ header {
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 15px 10px;
     color: hsl(206, 17%, 28%);
-    font-size: 16px;
+    font-size: large;
     margin: 0 auto;
     padding: 30px 40px;
 }
@@ -130,14 +130,13 @@ header {
     width: 100%;
 }
 
-.progressinfo {
-    display: flex;
-
+.answerbtn:hover:not([disabled]) {
+    background: hsl(206, 91%, 25%);
 }
 
-button[disabled] {
-    cursor: default;
-    background: #c0c7cf;
+.progressinfo {
+    display: flex;
+    font-size: large;
 }
 
 .float-right {
@@ -148,7 +147,14 @@ button[disabled] {
     display: none;
 }
 
+.correct {
+    background:rgb(48, 163, 48);
+}
 
+.incorrect {
+    background:rgb(255, 0, 0);
+
+}
 
 @media (max-width: 690px) {
     .btn {
