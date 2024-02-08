@@ -24,7 +24,7 @@
   --------
   Just click Start Quiz to get started!
 
-  (Optional: Video provided to demostrate how to run the program.)
+  ![Quiz Image](develop/demo.png)
 
   ## Contribution
   ---------------
