@@ -11,36 +11,40 @@
     <div class="wrapper">
         <nav>
             <flexbox class="menu">
-                <a href="#highScores">High Scores</a>
+                <a id="highScores" href="javascript:void(0);">High Scores</a>
             </flexbox>
             <flexbox class="menu">
-                <a href="#home">Home</a>
+                <a href="javascript:location.reload()">Home</a>
             </flexbox>
         </nav>
         <header>
         <h1>Javascript Quiz</h1>
       </header>
-      <div class="card">
-        <div id = "textArea" class="card-header">
-        </div>
-        <div id="initialsForm" style="display: none;">
-            <form>
-              <label for="initials">Enter Initials:</label>
-              <input type="text" id="initials" name="initials">
-              <button type="submit">Submit</button>
-            </form>
-        </div>
+      <div class="card">       
         <div>
-          <h1 id="question">Click below to start the quiz.</h1><br>
+          <h1 id="question"></h1><br>
           <div id="answer-buttons">
           </div>
-          <button id="submitButton" class="btn">Start Quiz</button>
+          <button id="startButton" class="btn">Start Quiz</button>
+          <button id="submitButton" class="btn hide">Continue</button>
+        </div>
+        <div id="highScoresContainer" class="hide">
+          <h2>High Scores</h2>
+          <ul id="highScoresList"></ul>
+          <button class="btn" onclick="backToQuiz()">Back to Quiz</button>
+        </div>
+        <div id="initialsForm" class="hide">
+          <form>
+            <label for="userinitials">Enter Initials:</label>
+            <input id="userinitials" type="text" name="initials">
+            <button id="initialBtn" class="btn" type="submit">Save Score</button>
+          </form>
         </div>
         <div class="card-footer">
         </div>
         <div class="progress-info">
-            <p id="result">Good Luck!</p>
-            <p id="timer">Timer</p>
+          <p id="currentScore">Current Score: 0</p>
+          <p id="timer">Timer: 65</p>
         </div>
       </div>
     </div>
